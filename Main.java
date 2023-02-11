@@ -23,6 +23,12 @@ public class Main {
             weatherMap = new Weather[numRows][numCollums];
             roadMap = new Roads[numRows][numCollums];
             populate(args[1]);
+
+			for (int i = 0; i < weatherMap.length; i++) {
+				for (int j = 0; j < weatherMap[i].length; j++) {
+					System.out.print(Util.getWeatherLabelByType(weatherMap[i][j]));
+				}
+			}
         } catch(Exception a) {
             System.out.println(a);
         }
@@ -45,14 +51,19 @@ public class Main {
 					}
 					else {
 						for (int j = 0; j < str.length() - 1; j++) {
-                            Util.getRoadTypeByLabel(Character.toString(str.charAt(j)));
-
+                            Roads road = new Roads(Character.toString(str.charAt(j)));
+							roadMap[i][j] = road;
 						}
 						i++;
 					}
 				}
 			} else {
-
+				if (str.length() > 0) {
+					for (int j = 0; j < str.length() - 1; j++) {
+						weatherMap[i][j] = Util.getWeatherTypeByLabel(Character.toString(str.charAt(j)));
+					}
+					i++;
+				}
 			}
 		}
     }
