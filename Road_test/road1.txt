@@ -1,0 +1,15 @@
+P, R, R, R, N, P
+R, N, N, R, N, R
+R, N, N, C, R, R
+R, N, N, N, N, R
+P, R, R, R, N, R
+N, N, N, R, R, P
+
+###
+
+C, R, R, C, C, C
+C, R, R, C, C, C
+I, I, I, C, C, C
+S, S, I, R, C, C
+C, R, R, C, C, C
+C, C, C, C, C, C
