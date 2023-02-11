@@ -1,0 +1,19 @@
+N, P, N, N, N, N, N
+C, P, R, R, R, R, N
+P, P, N, N, N, N, P
+N, R, N, N, N, N, R
+N, R, N, N, N, N, R
+N, R, N, N, N, N, R
+N, R, N, N, N, N, R
+N, R, R, R, R, R, R
+
+###
+
+C, C, C, C, C, C, C
+S, S, S, S, S, S, S
+R, C, R, C, R, C, R
+C, C, R, R, C, C, R
+I, I, I, I, I, I, I
+I, I, I, I, I, I, I
+I, I, I, I, I, I, I
+I, I, I, I, I, I, I 
