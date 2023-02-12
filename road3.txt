@@ -1,0 +1,23 @@
+P, N, N, N, N, N, N, N, N, P
+R, R, N, N, N, N, N, N, R, R
+N, R, R, N, N, N, N, R, R, N
+N, N, R, R, N, N, R, R, N, N
+N, N, N, R, R, R, R, N, N, N
+N, N, N, R, C, N, R, N, N, N
+N, N, N, R, R, R, R, N, N, N
+N, N, R, R, N, N, R, R, N, N
+N, R, R, N, N, N, N, R, R, N
+P, R, N, N, N, N, N, N, R, P
+
+###
+
+I, I, I, I, I, I, I, I, I, I
+I, I, I, I, I, I, I, I, I, I
+I, I, I, I, I, I, I, I, I, I
+I, I, I, I, I, I, I, I, I, I
+R, R, R, R, S, S, S, S, S, S
+R, R, R, R, R, R, R, R, R, R
+S, S, S, S, S, R, R, R, R, R
+C, C, C, C, C, C, C, C, C, C
+C, C, C, C, C, C, C, C, C, C
+C, C, C, C, C, C, C, C, C, C
