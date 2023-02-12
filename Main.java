@@ -1,5 +1,6 @@
 import java.io.File;
 import java.util.Scanner;
+import java.io.FileWriter;
 
 public class Main {
     
@@ -19,16 +20,56 @@ public class Main {
 
     public static void main(String[] args) {
         try {
-            statiate(args[1]);
+            statiate(args[0]);
             weatherMap = new Weather[numRows][numCollums];
             roadMap = new Roads[numRows][numCollums];
-            populate(args[1]);
+            populate(args[0]);
 
 			for (int i = 0; i < weatherMap.length; i++) {
 				for (int j = 0; j < weatherMap[i].length; j++) {
 					System.out.print(Util.getWeatherLabelByType(weatherMap[i][j]));
 				}
+				System.out.println();
 			}
+			for (int i = 0; i < roadMap.length; i++) {
+				for (int j = 0; j < roadMap[i].length; j++) {
+					System.out.print(Util.getRoadLabelByType(roadMap[i][j].type));
+				}
+				System.out.println();
+			}
+
+			File myObj = new File("output.txt");
+			myObj.createNewFile();
+
+			FileWriter myWriter = new FileWriter("filename.txt");
+
+			for (int i = 0; i < roadMap.length; i++) {
+				for (int j = 0; j < roadMap[i].length; j++) {
+					if (j < roadMap[i].length - 1) {
+						myWriter.write(Util.getRoadLabelByType(roadMap[i][j].type));
+						myWriter.write(", ");
+					} else {
+						myWriter.write(Util.getRoadLabelByType(roadMap[i][j].type));
+					}
+				}
+				myWriter.write("\n");
+			}
+
+			myWriter.write("\n" + SECTIONER + "\n\n");
+
+			for (int i = 0; i < weatherMap.length; i++) {
+				for (int j = 0; j < weatherMap[i].length; j++) {
+					if (j < weatherMap[i].length - 1) {
+						myWriter.write(Util.getWeatherLabelByType(weatherMap[i][j]));
+						myWriter.write(", ");
+					} else {
+						myWriter.write(Util.getWeatherLabelByType(weatherMap[i][j]));
+					}
+				}
+				myWriter.write("\n");
+			}
+      		myWriter.close();
+
         } catch(Exception a) {
             System.out.println(a);
         }
@@ -50,8 +91,8 @@ public class Main {
 						i = 0;
 					}
 					else {
-						for (int j = 0; j < str.length() - 1; j++) {
-                            Roads road = new Roads(Character.toString(str.charAt(j)));
+						for (int j = 0; j < str.length(); j++) {
+							Roads road = new Roads(str.substring(j, j + 1));
 							roadMap[i][j] = road;
 						}
 						i++;
@@ -59,8 +100,8 @@ public class Main {
 				}
 			} else {
 				if (str.length() > 0) {
-					for (int j = 0; j < str.length() - 1; j++) {
-						weatherMap[i][j] = Util.getWeatherTypeByLabel(Character.toString(str.charAt(j)));
+					for (int j = 0; j < str.length(); j++) {
+						weatherMap[i][j] = Util.getWeatherTypeByLabel(str.substring(j, j + 1));
 					}
 					i++;
 				}
