@@ -79,4 +79,13 @@ public final class Util {
 
         return out;
     }
+
+    public static int getRoadNumberFromLabel(RoadType in) {
+        int out = 0;
+
+        if (in == RoadType.Parcel || in == RoadType.Road) {
+            out = 1;
+        }
+        return out;
+    }
 }
