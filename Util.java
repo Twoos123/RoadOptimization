@@ -19,13 +19,13 @@ public final class Util {
     public static RoadType getRoadTypeByLabel(String in) {
         RoadType out = null;
 
-        if (in == "R") {
+        if (in.equals("R")) {
             out = RoadType.Road;
-        } else if (in == "C") {
+        } else if (in.equals("C")) {
             out = RoadType.Central;
-        } else if (in == "N") {
+        } else if (in.equals("N")) {
             out = RoadType.Nothing;
-        } else if (in == "P") {
+        } else if (in.equals("P")) {
             out = RoadType.Parcel;
         }
 
@@ -51,13 +51,13 @@ public final class Util {
     public static Weather getWeatherTypeByLabel(String in) {
         Weather out = null;
 
-        if (in == "C") {
+        if (in.equals("C")) {
             out = Weather.Clear;
-        } else if (in == "I") {
+        } else if (in.equals("I")) {
             out = Weather.Ice;
-        } else if (in == "R") {
+        } else if (in.equals("R")) {
             out = Weather.Rainy;
-        } else if (in == "s") {
+        } else if (in.equals("S")) {
             out = Weather.Snow;
         }
 
