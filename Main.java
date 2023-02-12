@@ -3,7 +3,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.io.FileWriter;
-import java.lang.reflect.InaccessibleObjectException;
 
 public class Main {
     
@@ -26,14 +25,14 @@ public class Main {
     private static int [][] parcelsList;
     private static int parselCounter = 0;
 
-	private static Integer[][] intRoadMap;
+	private static int[][] intRoadMap;
 
     public static void main(String[] args) {
         try {
             statiate(args[0]);
             weatherMap = new Weather[numRows][numCollums];
             roadMap = new Roads[numRows][numCollums];
-			intRoadMap = new Integer[numRows][numCollums];
+			intRoadMap = new int[numRows][numCollums];
             populate(args[0]);
 
 			parcelCounter();
@@ -49,24 +48,35 @@ public class Main {
 
 			List<Integer> path = new ArrayList<>();
 
-			path.add(10);
-			path.add(1);
-			path.add(10);
-			path.add(1);
-
+			
 			for (int i = 0; i < parcelsList.length; i++) {
 				if (i == 0) {
-
-				} else if (i == parcelsList.length - 1) {
-
+					List<Cell> path1 = LabyrinthSolver.solve(intRoadMap, x_startingPoint, y_startingPoint, parcelsList[0][0], parcelsList[0][1]);
+					for (int j = 0; j < path1.size(); j++) {
+						path.add(path1.get(j).x * 10 + path1.get(j).y);
+					}
+				} else if (i < parcelsList.length - 1) {
+					try {
+						List<Cell> path2 = LabyrinthSolver.solve(intRoadMap, parcelsList[i - 1][0], parcelsList[i - 1][1], parcelsList[i][0], parcelsList[i][1]);
+						for (int j = 0; j < path2.size(); j++) {
+							path.add(path2.get(j).x * 10 + path2.get(j).y);
+						}
+					} catch(NullPointerException b) {b.printStackTrace();}
 				} else {
-
+					List<Cell> path3 = LabyrinthSolver.solve(intRoadMap, parcelsList[i - 1][0], parcelsList[i - 1][1], x_startingPoint, y_startingPoint);
+					try {
+						for (int j = 0; j < path3.size(); j++) {
+							int coordinates = path3.get(j).x * 10 + path3.get(j).y;
+							path.add(coordinates);
+						}
+					} catch(Exception a) {
+						a.printStackTrace();
+					}
 				}
-				//path = Labirinth.solve();
 			}
 
-			int time = calculateTime(path);
-			double fuel = calculateFuel(path);
+			float time = calculateTime(path);
+			float fuel = calculateFuel(path);
 
 			FileWriter myWriter = new FileWriter("filename.txt");
 
@@ -99,7 +109,7 @@ public class Main {
 			myWriter.write("\n" + SECTIONER + "\n\n");
 			
 			for (int i = 0; i < path.size(); i++) {
-				if (i < path.size()) {
+				if (i < path.size() - 1) {
 					myWriter.write(Integer.toString(path.get(i)));
 					myWriter.write(", ");
 				} else {
@@ -109,9 +119,9 @@ public class Main {
 
 			myWriter.write("\n" + SECTIONER + "\n\n");
 			
-			myWriter.write(Integer.toString(time));
+			myWriter.write(Float.toString(time));
 			myWriter.write(", ");
-			myWriter.write(Double.toString(fuel));
+			myWriter.write(Float.toString(fuel));
 
       		myWriter.close();
 
@@ -128,18 +138,18 @@ public class Main {
 		}
 	}
 
-	private static int calculateTime(List<Integer> path) {
-		int out = 1;
+	private static float calculateTime(List<Integer> path) {
+		float out = 1;
 		for (int i = 0; i < path.size(); i++) {
 			out += out * path.get(i);
 		}
 		return out;
 	}
 
-	private static double calculateFuel(List<Integer> path) {
-		int time = calculateTime(path);
+	private static float calculateFuel(List<Integer> path) {
+		float time = calculateTime(path);
 
-		return (time / 3600) * 74.65;
+		return (time / 3600) * 74;
 	}
 
     private static void parcelCounter(){

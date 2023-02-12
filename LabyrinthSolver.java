@@ -6,19 +6,6 @@ public class LabyrinthSolver {
     private static int[][] grid;
 
     // structure to store coordinates of the cell
-    private static class Cell {
-        int x, y;
-
-        public Cell(int x, int y) {
-            this.x = x;
-            this.y = y;
-        }
-
-        @Override
-        public String toString() {
-            return "[" + this.x + ", " + this.y + "]";
-        }
-    };
 
     // Below arrays details all 4 possible movements from a cell
     private static final int[] row = { -1, 0, 0, 1 };
@@ -28,7 +15,7 @@ public class LabyrinthSolver {
     // from current position. The function returns false if (row, col)
     // is not a valid position or has value 0 or it is already visited
     private static boolean isValidMove(int x, int y, boolean[][] visited) {
-        return (x >= 0 && x < ROW && y >= 0 && y < COL && grid[x][y] == 1 && !visited[x][y]);
+        return (x > 0 && x < ROW && y > 0 && y < COL && grid[x][y] == 1 && !visited[x][y]);
     }
 
     // Find Shortest Possible Route in a Matrix mat from source cell (i, j)
@@ -36,8 +23,9 @@ public class LabyrinthSolver {
     private static List<Cell> BFS(Cell src, Cell dest, int[][] grid) {
         // check source and destination cell
         // of the matrix have value 1
+        List<Cell> empty = new ArrayList<>();
         if (grid[src.x][src.y] == 0 || grid[dest.x][dest.y] == 0) {
-            return null;
+            return empty;
         }
 
         boolean[][] visited = new boolean[ROW][COL];
@@ -89,7 +77,7 @@ public class LabyrinthSolver {
     
         // If destination is not found or destination is blocked
         if (!destFound) {
-            return null;
+            return empty;
         }
     
         // vector to store the path
