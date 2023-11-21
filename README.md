@@ -20,7 +20,7 @@ RoadOptimization is a submission for uOttaHack 5, utilizing Java and JavaScript 
 1. **Clone the repository:**
 
     ```bash
-    git clone https://github.com/your-username/RoadOptimization.git
+    git clone https://github.com/Twoos123/RoadOptimization.git
     ```
 
 2. **Open the project:**
