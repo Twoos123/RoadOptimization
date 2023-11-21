@@ -38,7 +38,9 @@ RoadOptimization is a submission for uOttaHack 5, utilizing Java and JavaScript 
 # Team
 
 Asad Ali 
+
 John Bute
+
 Felipe Afonso
 
 ## Contributing
